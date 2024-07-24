@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     appwriteAuthentication.getCurrentUser().then(data => {
       if(data)
-      dispatch(authLogin({data}))
+      dispatch(authLogin(data))
       else
       dispatch(authLogout())
     })

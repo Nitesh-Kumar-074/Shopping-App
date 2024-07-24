@@ -2,7 +2,7 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 
 function Home() {
-  const isLoggedIn = useSelector(state => state.authSlice.currentUser.status)
+  const isLoggedIn = useSelector(state => state.authSlice.status)
   // let name = "No-one";
   //  name = useSelector(state => state.authSlice.currentUser.userData.data.name)
   return (

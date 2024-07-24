@@ -10,10 +10,10 @@ function Signup() {
        const {register,handleSubmit} = useForm()
        const navigate = useNavigate()
        const dispatch = useDispatch()
-       const submit = (data) => {
-              const session = appwriteAuthentication.createAccount(data);
+       const submit = async (data) => { 
+              const session = await appwriteAuthentication.createAccount(data);
               if(session){
-                     const userData = appwriteAuthentication.getCurrentUser()
+                     const userData = await appwriteAuthentication.getCurrentUser()
                      if(userData){
                             dispatch(authLogin(userData))
                      }

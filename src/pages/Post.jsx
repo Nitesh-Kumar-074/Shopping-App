@@ -7,11 +7,11 @@ function Post() {
        const navigate = useNavigate()
        const { slug } = useParams()
        const [post,setPost] = useState(null)
-       const userData = useSelector((state) => state.authSlice.currentUser.userData)
+       const userData = useSelector((state) => state.authSlice.userData)
        useEffect(() => {
         appwriteService.getPost(slug).then(post => {setPost(post)})
        },[slug,navigate])
-       const isAuthor = post && userData && userData.data ? post.userId === userData.data.$id : false
+       const isAuthor = post && userData  ? post.userId === userData.$id : false
 
        const deleteHandler = () => {
         appwriteService.deletePost(slug).then(status => {
@@ -24,15 +24,22 @@ function Post() {
 
   return (
     post ? 
-    <div>
-      <h2 className='text-3xl'>{post.title}</h2>
-      <img src={appwriteService.getFilePreview(post.featuredImage)} alt={post.title} style={{width:"500px"}}/><br/>
-      <p className='text-2xl cursive'>{post.content}</p>
-      <div className='m-4 p-4' style={{backgroundColor:"black",color:"greenyellow",border:"4px solid brown"}}>Price in rupees {post.price}</div>
+    <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
+      <h2 className='text-3xl m-2' style={{color:"red",fontFamily:"cursive"}}>{post.title}</h2>
+      <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}} >
+      <img src={appwriteService.getFilePreview(post.featuredImage)} alt={post.title} style={{width:"300px",border:"5px solid green",margin:"20px",padding:"10px",borderRadius:"10px"}}/><br/>
+     
+      </div>
+      <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}} >
+      <p className='text-2xl' style={{backgroundColor:"white",color:"purple",fontFamily:"cursive",margin:"20px",padding:"10px",width:"400px",border:"2px solid blue"}}>{post.content}</p>
+      </div>
+      <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}} >
+      <div className='m-4 p-4' style={{backgroundColor:"black",color:"greenyellow",border:"4px solid brown",fontSize:"25px",fontFamily:"cursive"}}>Price in rupees :-  {post.price}</div>
+      </div>
       <div>{
         !isAuthor && <a href={`mailto:${post.sellerEmail}`} style={{fontSize:"25px",fontFamily:"cursive",color:"cyan"}}>Click here to contact with owner of this product</a>
         }</div>
-      {isAuthor && <Button onClick={deleteHandler}>Delete</Button>}
+      {isAuthor && <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}><Button onClick={deleteHandler} backgroundColor="red">Delete</Button></div>}
     </div>
     : null
   )

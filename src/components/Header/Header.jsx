@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import {Button,LogoutBtn,Logo} from '../index'
 
 function Header() {
-       const navigate = useNavigate();
-       const authStatus = useSelector(state => state.authSlice.currentUser.status)
+       const navigate = useNavigate(); 
+       const authStatus = useSelector(state => state.authSlice.status)
        const navItems = [
               {
                      name : "Home",

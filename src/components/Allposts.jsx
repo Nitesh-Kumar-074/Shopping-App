@@ -1,7 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import appwriteService from '../appwrite/service'
 import {PostCard} from './index'
-import { useSelector } from 'react-redux'
 function Allposts() {
        const [posts, setPosts] = useState([])
        useEffect(() => {

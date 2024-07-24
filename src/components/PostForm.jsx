@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useId} from 'react'
 import {Input,Button} from './index.js'
 import { useForm } from 'react-hook-form'
 import appwriteService from '../appwrite/service'
@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 
 function PostForm() {
-       const userData = useSelector(state => state.authSlice.currentUser.userData)
+       const id2 = useId()
+       const userData = useSelector(state => state.authSlice.userData)
        // console.log(userData)
        const {register,handleSubmit} = useForm()
        const navigate = useNavigate()
@@ -15,11 +16,13 @@ function PostForm() {
               .replace(/\s/g, "-");
        }
        const submit = async (data) => {
-              data.sellerEmail = userData.data.email;
-              data.userId = userData.data.$id;
+              data.sellerEmail = userData.email;
+              data.userId = userData.$id;
               data.price = parseFloat(data.price2)
-              if(data.title)
-              data.slug = getSlug(data.title)
+              if(data.title){
+              slug2 = getSlug(data.title) + id2
+              data.slug = slug2;
+              }
               else{
                      data.slug = "I-wish-there-was-a-slug"
               }

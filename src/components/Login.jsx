@@ -15,6 +15,7 @@ function Login() {
                      const session = await appwriteAuthentication.login(data)
                      if(session){
                             const currentUser = await appwriteAuthentication.getCurrentUser()
+                            console.log("In Login component : -")
                             console.log(currentUser)
                             if(currentUser){
                                    dispatch(authLogin(currentUser))
@@ -26,7 +27,7 @@ function Login() {
                      
               }
        }
-  return (
+  return ( 
        <div style={{textAlign:"center",display:"flex",justifyContent:"center"}}>
               
     <div style={{border:"5px solid green",margin:"20px",padding:"20px",display:"flex",flexDirection:"column",justifyContent:"center",borderRadius:"20px"}}>
