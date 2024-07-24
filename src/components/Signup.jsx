@@ -34,7 +34,7 @@ function Signup() {
               <Input label="Email " type="email" placeholder="Enter your email " {...register("email",{
                      required : true
               })}/>
-              <Input label="Password " type="password" placeholder="Enter your password " {...register("password",{
+              <Input label="Password " type="password" placeholder="minimum length :- 8" {...register("password",{
                      required : true
               })}/>
               <Button type='submit'>Submit</Button>
