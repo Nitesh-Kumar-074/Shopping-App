@@ -11,15 +11,20 @@ function Signup() {
        const navigate = useNavigate()
        const dispatch = useDispatch()
        const submit = async (data) => { 
-              const session = await appwriteAuthentication.createAccount(data);
-              if(session){
-                     const userData = await appwriteAuthentication.getCurrentUser()
-                     if(userData){
-                            dispatch(authLogin(userData))
+              try {
+                     const session = await appwriteAuthentication.createAccount(data);
+                     if(session){
+                            const userData = await appwriteAuthentication.getCurrentUser()
+                            if(userData){
+                                   dispatch(authLogin(userData))
+                            }
+                            else{
+                                   alert("Your account has been created successfully, but an error occured while login automatically.Please LOGIN")
+                            }
+                            navigate('/')
                      }
-                     else{
-                            alert("Your account has been created successfully, but an error occured while login automatically.Please LOGIN")
-                     }
+              } catch (error) {
+                     alert("Your account has not been created")
                      navigate('/')
               }
        }

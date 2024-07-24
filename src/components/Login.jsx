@@ -22,9 +22,14 @@ function Login() {
                             }
                             navigate("/")
                      }
+                     else{
+                            alert("Invalid credentials")
+                            navigate("/")
+                     }
                       
               } catch (error) {
-                     
+                     alert("Invalid credentials")
+                     navigate("/")
               }
        }
   return ( 
